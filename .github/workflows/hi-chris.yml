@@ -24,3 +24,5 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/marcstdt/bday-3:latest
+          build-args: |
+            SECRETCODE=test
