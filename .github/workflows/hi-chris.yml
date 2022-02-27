@@ -1,10 +1,8 @@
-on:
-  release:
-    types: [published]
+on: [push]
 
 jobs:
   push_to_registries:
-    name: Push Docker image to multiple registries
+    name: Push Docker image
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -19,14 +17,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action
-        with:
-          images: |
-            ghcr.io/${{ github.repository }}
-
+          
       - name: Build and push Docker images
         uses: docker/build-push-action
         with:
